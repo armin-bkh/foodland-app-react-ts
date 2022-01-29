@@ -26,4 +26,8 @@ code {
   @apply flex justify-between items-center;
 }
 
+.layoutPadding{
+  @apply px-5 py-7;
+}
+
 @tailwind utilities;

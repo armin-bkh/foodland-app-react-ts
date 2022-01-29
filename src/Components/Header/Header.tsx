@@ -7,7 +7,7 @@ const links = [
 
 const Header = () => {
   return (
-    <header className={`flex-between px-5 py-7 shadow`}>
+    <header className={`flex-between layoutPadding shadow`}>
       <span>FoodLand</span>
       <nav className="flex-1 flex-center">
         <ul className="flex-center">
