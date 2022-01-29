@@ -1,8 +1,15 @@
-interface layoutProps { 
-    children: React.ReactChild,
+import Header from "../Components/Header/Header";
+
+interface layoutProps {
+  children: React.ReactChild;
 }
 
 const Layout = ({ children }: layoutProps) => {
-    return children
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
 };
 export default Layout;
