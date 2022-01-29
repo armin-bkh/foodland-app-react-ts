@@ -35,4 +35,16 @@ code {
   @apply p-5;
 }
 
+.layoutContentPadding{
+  @apply px-3 py-1 md:px-5 md:py-3;
+}
+
+.text{
+  @apply text-sm md:text-base lg:text-lg
+}
+
+.homePageButton{
+  @apply text px-10 py-2 mr-16 border border-purple-300 rounded-md hover:bg-purple-400 hover:text-white transition-all;
+}
+
 @tailwind utilities;

@@ -8,19 +8,20 @@ const socialMedia = [
 
 const Footer = () => {
   return (
-    <footer className="layoutPadding shadow">
-      <p className="mb-5 w-full md:w-1/2">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, tempora
-        optio consectetur commodi consequuntur voluptatem error eius repudiandae
-        corporis beatae reiciendis unde maiores quaerat at quasi quas suscipit,
-        rem a!
+    <footer className="layoutPadding shadow bg-purple-400 text-white">
+      <p className="mb-5 w-full md:w-1/2 text">
+        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
+        از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
+        سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
+        متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
+        درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را 
       </p>
       <div className="flex-between">
-        <p>copyRight FoodLand, Armin Bakhshi &copy;</p>
+        <p className="text-xs">copyRight Armin Bakhshi &copy;</p>
         <nav>
-          <ul className="flex-center">
+          <ul className="flex-center text">
             {socialMedia.map((link, index) => (
-              <li key={index} className="mx-5">
+              <li key={index} className="mx-3 md:mx-5">
                 <a className={``} href={link.href}>
                   {link.icon}
                 </a>
