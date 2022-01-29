@@ -13,7 +13,7 @@ const Header = () => {
         <ul className="flex-center">
           {links.length > 0 &&
             links.map((link) => (
-              <li>
+              <li key={link.to}>
                 <NavLink className={({isActive})=> "px-5 py-3" + (isActive ? "text-red" : "")} to={link.to}>{link.title}</NavLink>
               </li>
             ))}

@@ -30,4 +30,9 @@ code {
   @apply px-5 py-7;
 }
 
+.main{
+  min-height: calc(100vh - 252px);
+  @apply p-5;
+}
+
 @tailwind utilities;

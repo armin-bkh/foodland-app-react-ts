@@ -8,8 +8,8 @@ const socialMedia = [
 
 const Footer = () => {
   return (
-    <footer className="layoutPadding">
-      <p>
+    <footer className="layoutPadding shadow">
+      <p className="mb-5 w-full md:w-1/2">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, tempora
         optio consectetur commodi consequuntur voluptatem error eius repudiandae
         corporis beatae reiciendis unde maiores quaerat at quasi quas suscipit,
@@ -19,8 +19,8 @@ const Footer = () => {
         <p>copyRight FoodLand, Armin Bakhshi &copy;</p>
         <nav>
           <ul className="flex-center">
-            {socialMedia.map((link) => (
-              <li className="mx-5">
+            {socialMedia.map((link, index) => (
+              <li key={index} className="mx-5">
                 <a className={``} href={link.href}>
                   {link.icon}
                 </a>
