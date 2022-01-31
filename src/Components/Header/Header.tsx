@@ -1,7 +1,8 @@
 import { FaHome } from "react-icons/fa";
-import { MdOutlineMenuBook } from 'react-icons/md';
-import { IoMdCart } from 'react-icons/io';
+import { MdOutlineMenuBook } from "react-icons/md";
+import { IoMdCart } from "react-icons/io";
 import { NavLink } from "react-router-dom";
+import { useCart } from "../Providers/CartProvider";
 
 const links = [
   { to: "/", title: "Home", icons: <FaHome /> },
@@ -10,6 +11,10 @@ const links = [
 ];
 
 const Header = () => {
+  const { cart } = useCart();
+
+  console.log(cart);
+
   return (
     <header
       className={`flex-between layoutPadding shadow sticky top-0 bg-white z-50`}
@@ -28,7 +33,16 @@ const Header = () => {
                   }
                   to={link.to}
                 >
-                  <span className={link.to !== '/checkout' ? 'mr-3' : ''}>{link.icons}</span>
+                  <span
+                    className={link.to !== "/checkout" ? "mr-3" : "relative"}
+                  >
+                    {link.icons}
+                    {link.to === "/checkout" && (
+                      <span className="absolute -top-5 -right-4 bg-red-400 rounded-full flex-center text-white w-5 h-5">
+                        {cart.length}
+                      </span>
+                    )}
+                  </span>
                   {link?.title}
                 </NavLink>
               </li>

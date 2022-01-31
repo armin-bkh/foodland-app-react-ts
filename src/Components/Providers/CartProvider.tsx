@@ -1,19 +1,30 @@
-import { useReducer } from "react";
+import { useContext, useReducer } from "react";
 import { CartActionsContext, CartContext } from "../../Context/CartContext";
-import { actionType, cartType } from "./cartProvider.type";
+import { actionType, cartCases, cartItemType, cartType } from "./cartProvider.type";
 
 interface cartProviderProps {
   children: React.ReactChild;
 }
 
 const initialValue = {
-  loading: true,
+  loading: false,
   error: null,
   cart: [],
 };
 
 const reducer = (state: cartType, action: actionType) => {
   switch (action.type) {
+    case cartCases.ADDFOOD: {
+      return { loading: false, error: null, cart: [...state.cart, {...action.payload}] };
+    }
+    case cartCases.INCREMENTFOOD: {
+      const cloneCart = [...state.cart];
+      const index = cloneCart.findIndex((food) => food.id === action.payload);
+      const selectedFood = { ...cloneCart[index] };
+      if (selectedFood.quantity) selectedFood.quantity++;
+      cloneCart[index] = selectedFood;
+      return { loading: false, error: null, cart: cloneCart };
+    }
     default:
       return state;
   }
@@ -21,6 +32,7 @@ const reducer = (state: cartType, action: actionType) => {
 
 const CartProvider = ({ children }: cartProviderProps) => {
   const [cart, dispatch] = useReducer(reducer, initialValue);
+
   return (
     <CartContext.Provider value={cart}>
       <CartActionsContext.Provider value={dispatch}>
@@ -31,3 +43,18 @@ const CartProvider = ({ children }: cartProviderProps) => {
 };
 
 export default CartProvider;
+
+export const useCart = () => useContext(CartContext);
+
+export const useCartActions = () => {
+  const dispatch = useContext(CartActionsContext);
+  const addHandler = (food: cartItemType) => {
+    dispatch({ type: cartCases.ADDFOOD, payload: food });
+  };
+
+  const incrementHandler = (id: number | string) => {
+    dispatch({ type: cartCases.INCREMENTFOOD, payload: id });
+  };
+
+  return { addHandler, incrementHandler };
+};

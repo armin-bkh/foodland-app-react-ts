@@ -2,15 +2,16 @@ export type cartItemType = {
     id: number | string;
     name: string;
     image: string;
+    quantity?: number;
   };
   
   export type cartType = {
     loading: boolean;
     error: null | string;
-    cart: cartItemType[];
+    cart: any[];
   };
   
-  export type AddType = {
+  export type addType = {
     type: string;
     payload: cartItemType;
   };
@@ -20,4 +21,9 @@ export type cartItemType = {
     payload: number | string;
   };
   
-export type actionType = AddType | incDecType;  
+export type actionType = {
+    type: string,
+    payload: any
+};  
+
+export enum cartCases { ADDFOOD = "ADDFOOD", INCREMENTFOOD = "INCREMENTFOOD" }
