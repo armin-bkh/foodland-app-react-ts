@@ -1,16 +1,18 @@
-import { Route, Routes, useRoutes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import CartProvider from "./Components/Providers/CartProvider";
 import routes from "./Routes/Routes";
-import { routesType } from './Routes/Routes.type';
+import { routesType } from "./Routes/Routes.type";
 
 function App() {
-  // const routes = useRoutes(routes);
   return (
-    <div>
-      <Routes>{routes.map(route => (
-        <Route key={route.path} path={route.path} element={route.element} />
-      ))}</Routes>
-    </div>
+    <CartProvider>
+      <Routes>
+        {routes.map((route) => (
+          <Route key={route.path} path={route.path} element={route.element} />
+        ))}
+      </Routes>
+    </CartProvider>
   );
 }
 
