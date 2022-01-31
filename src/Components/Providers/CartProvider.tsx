@@ -1,6 +1,11 @@
-import { useContext, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import { CartActionsContext, CartContext } from "../../Context/CartContext";
-import { actionType, cartCases, cartItemType, cartType } from "./cartProvider.type";
+import {
+  actionType,
+  cartCases,
+  cartItemType,
+  cartType,
+} from "./cartProvider.type";
 
 interface cartProviderProps {
   children: React.ReactChild;
@@ -14,8 +19,15 @@ const initialValue = {
 
 const reducer = (state: cartType, action: actionType) => {
   switch (action.type) {
+    case cartCases.GETDATA: {
+      return { ...state, cart: action.payload };
+    }
     case cartCases.ADDFOOD: {
-      return { loading: false, error: null, cart: [...state.cart, {...action.payload}] };
+      return {
+        loading: false,
+        error: null,
+        cart: [...state.cart, { ...action.payload }],
+      };
     }
     case cartCases.INCREMENTFOOD: {
       const cloneCart = [...state.cart];
@@ -32,6 +44,15 @@ const reducer = (state: cartType, action: actionType) => {
 
 const CartProvider = ({ children }: cartProviderProps) => {
   const [cart, dispatch] = useReducer(reducer, initialValue);
+
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("foodLandCart")!);
+    dispatch({ type: cartCases.GETDATA, payload: savedCart });
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("foodLandCart", JSON.stringify(cart.cart));
+  }, [cart]);
 
   return (
     <CartContext.Provider value={cart}>

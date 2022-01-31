@@ -23,7 +23,7 @@ export type cartItemType = {
   
 export type actionType = {
     type: string,
-    payload: any
+    payload?: any
 };  
 
-export enum cartCases { ADDFOOD = "ADDFOOD", INCREMENTFOOD = "INCREMENTFOOD" }
+export enum cartCases { GETDATA = "GETDATA" , ADDFOOD = "ADDFOOD", INCREMENTFOOD = "INCREMENTFOOD" }
