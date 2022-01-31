@@ -1,24 +1,25 @@
 import { Link } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
-import { useCartActions } from "../Providers/CartProvider";
+import { useCart, useCartActions } from "../Providers/CartProvider";
+import checkExistFood from "../Utils/checkExistFood";
 
 interface foodItemProps {
   food: any;
 }
 
 const FoodItem = ({ food }: foodItemProps) => {
-  console.log(food);
+  const { cart } = useCart();
   const { addHandler } = useCartActions();
 
   const addFoodHandler = () => {
-      const newFood = {
-          id: food.idMeal,
-          name: food.strMeal,
-          image: food.strMealThumb,
-          quantity: 0,
-      }
-      addHandler(newFood);
-  }
+    const newFood = {
+      id: food.idMeal,
+      name: food.strMeal,
+      image: food.strMealThumb,
+      quantity: 0,
+    };
+    addHandler(newFood);
+  };
 
   return (
     <figure className="shadow rounded-lg overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group">
@@ -32,8 +33,11 @@ const FoodItem = ({ food }: foodItemProps) => {
         </Link>
       </div>
       <figcaption className="p-3 flex-1 text">{food?.strMeal}</figcaption>
-      <button onClick={addFoodHandler} className="bg-red-400 py-3 text-white flex-center relative group">
-        Add to cart
+      <button
+        onClick={addFoodHandler}
+        className="bg-red-400 py-3 text-white flex-center relative group"
+      >
+        {!checkExistFood(cart, food.idMeal) ? "Add to cart" : "In cart"}
         <span className="ml-3 absolute transition-all -right-10 group-hover:right-16 duration-300">
           <BsFillCartPlusFill />
         </span>
