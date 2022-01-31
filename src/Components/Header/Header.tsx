@@ -6,14 +6,12 @@ import { useCart } from "../Providers/CartProvider";
 
 const links = [
   { to: "/", title: "Home", icons: <FaHome /> },
-  { to: "/foods", title: "Reserve", icons: <MdOutlineMenuBook /> },
+  { to: "/foods", title: "Menu", icons: <MdOutlineMenuBook /> },
   { to: "/checkout", title: null, icons: <IoMdCart /> },
 ];
 
 const Header = () => {
   const { cart } = useCart();
-
-  console.log(cart);
 
   return (
     <header

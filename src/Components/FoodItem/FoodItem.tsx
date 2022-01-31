@@ -9,16 +9,18 @@ interface foodItemProps {
 
 const FoodItem = ({ food }: foodItemProps) => {
   const { cart } = useCart();
-  const { addHandler } = useCartActions();
+  const { addHandler, incrementHandler } = useCartActions();
 
-  const addFoodHandler = () => {
-    const newFood = {
-      id: food.idMeal,
-      name: food.strMeal,
-      image: food.strMealThumb,
-      quantity: 0,
-    };
-    addHandler(newFood);
+  const incrementFoodHandler = () => {
+    if (!checkExistFood(cart, food.idMeal)) {
+      const newFood = {
+        id: food.idMeal,
+        name: food.strMeal,
+        image: food.strMealThumb,
+        quantity: 1,
+      };
+      addHandler(newFood);
+    } else incrementHandler(food.idMeal);
   };
 
   return (
@@ -34,7 +36,7 @@ const FoodItem = ({ food }: foodItemProps) => {
       </div>
       <figcaption className="p-3 flex-1 text">{food?.strMeal}</figcaption>
       <button
-        onClick={addFoodHandler}
+        onClick={incrementFoodHandler}
         className="bg-red-400 py-3 text-white flex-center relative group"
       >
         {!checkExistFood(cart, food.idMeal) ? "Add to cart" : "In cart"}

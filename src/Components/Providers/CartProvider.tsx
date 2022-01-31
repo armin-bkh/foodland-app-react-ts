@@ -46,7 +46,7 @@ const CartProvider = ({ children }: cartProviderProps) => {
   const [cart, dispatch] = useReducer(reducer, initialValue);
 
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("foodLandCart")!);
+    const savedCart = JSON.parse(localStorage.getItem("foodLandCart")!) || [];
     dispatch({ type: cartCases.GETDATA, payload: savedCart });
   }, []);
 
