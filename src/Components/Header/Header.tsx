@@ -1,21 +1,36 @@
 import { FaHome } from "react-icons/fa";
+import { MdOutlineMenuBook } from 'react-icons/md';
+import { IoMdCart } from 'react-icons/io';
 import { NavLink } from "react-router-dom";
 
 const links = [
-  { to: "/", title: "خانه", icons: <FaHome/> },
-  { to: "/foods", title: "سفارش", icons: <FaHome/> },
+  { to: "/", title: "Home", icons: <FaHome /> },
+  { to: "/foods", title: "Reserve", icons: <MdOutlineMenuBook /> },
+  { to: "/checkout", title: null, icons: <IoMdCart /> },
 ];
 
 const Header = () => {
   return (
-    <header className={`flex-between layoutPadding shadow sticky top-0 bg-white`}>
-      <span className="text-xl md:text-3xl text-purple-400">FoodLand</span>
-      <nav className="flex-1 flex-center">
+    <header
+      className={`flex-between layoutPadding shadow sticky top-0 bg-white z-50`}
+    >
+      <span className="text-xl md:text-3xl text-red-400">FoodLand</span>
+      <nav className="flex-1">
         <ul className="flex-center text">
           {links.length > 0 &&
             links.map((link) => (
-              <li key={link.to}>
-                <NavLink className={({isActive})=> "layoutContentPadding flex-center" + " " + (isActive ? "text-purple-400" : "")} to={link.to}><span className="ml-3">{link.icons}</span>{link.title}</NavLink>
+              <li className="last:ml-auto" key={link.to}>
+                <NavLink
+                  className={({ isActive }) =>
+                    "layoutContentPadding flex-center" +
+                    " " +
+                    (isActive ? "text-red-500" : "")
+                  }
+                  to={link.to}
+                >
+                  <span className={link.to !== '/checkout' ? 'mr-3' : ''}>{link.icons}</span>
+                  {link?.title}
+                </NavLink>
               </li>
             ))}
         </ul>

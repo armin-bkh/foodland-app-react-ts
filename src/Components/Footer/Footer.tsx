@@ -8,13 +8,15 @@ const socialMedia = [
 
 const Footer = () => {
   return (
-    <footer className="layoutPadding shadow bg-purple-400 text-white">
+    <footer className="layoutPadding shadow text-red-400">
       <p className="mb-5 w-full md:w-1/2 text">
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-        از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
-        متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
-        درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را 
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+        distinctio expedita soluta nam nobis fugiat qui veritatis libero ipsam
+        deleniti.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Laboriosam distinctio expedita soluta nam nobis fugiat qui veritatis
+        libero ipsam deleniti.Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Laboriosam distinctio expedita soluta nam nobis fugiat qui
+        veritatis libero ipsam deleniti.
       </p>
       <div className="flex-between">
         <p className="text-xs">copyRight Armin Bakhshi &copy;</p>
