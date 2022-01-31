@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import FoodItem from "../FoodItem/FoodItem";
 
 const URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
@@ -18,13 +19,13 @@ const FoodsList = () => {
   }, []);
 
   return (
-    <section>
+    <>
       {!error && allFoods ? (
-        allFoods.map((food) => <div key={food?.idMeal}>{food?.strMeal}</div>)
+        allFoods.map((food) => <FoodItem key={food.idMeal} food={food}/>)
       ) : (
         <p>{error}</p>
       )}
-    </section>
+    </>
   );
 };
 
