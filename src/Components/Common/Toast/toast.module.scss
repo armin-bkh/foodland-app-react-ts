@@ -1,0 +1,70 @@
+.toastContainer {
+  position: absolute;
+  padding: 15px;
+  border-radius: 7px;
+
+  .success {
+    background: #10b981;
+  }
+
+  .error {
+    background: #dc2626;
+  }
+
+  .warning {
+    background: #fde047;
+  }
+
+  .info {
+    background: #7dd3fc;
+  }
+
+  .defaultPosition {
+    top: 0;
+    left: 10px;
+  }
+
+  .topCenterPosition {
+    top: 0;
+    left: 50%;
+    right: 50%;
+  }
+
+  .topRightPosition {
+    top: 0;
+    right: 10px;
+  }
+
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .centerLeftPosition {
+    top: 50%;
+    left: 10px;
+  }
+
+  .centerRightPosition {
+      top: 50%;
+      right: 10px;
+  }
+
+  .bottomLeftPosition {
+      bottom: 0;
+      left: 10px;
+  }
+
+  .bottomCenterPosition {
+      bottom: 0;
+      left: 50%;
+      right: 50%;
+  }
+
+  .bottomRightPosition {
+      bottom: 0;
+      right: 10px;
+  }
+}
