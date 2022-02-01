@@ -36,7 +36,7 @@ const Header = () => {
                   >
                     {link.icons}
                     {link.to === "/checkout" && (
-                      <span className="absolute -top-5 -right-4 bg-red-400 rounded-full flex-center text-white w-5 h-5">
+                      <span className="absolute -top-5 -right-3 text bg-red-400 rounded-full flex-center text-white w-5 h-5">
                         {cart.length}
                       </span>
                     )}
