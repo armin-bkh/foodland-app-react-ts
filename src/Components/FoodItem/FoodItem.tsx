@@ -38,6 +38,7 @@ const FoodItem = ({ food }: foodItemProps) => {
           }}
         >
           <img
+          loading="lazy"
             className="w-fix group-hover:scale-150 group-hover:skew-x-6 transition-all duration-700"
             src={food?.strMealThumb}
             alt={food?.strMeal}
