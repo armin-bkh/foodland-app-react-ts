@@ -1,70 +1,78 @@
 .toastContainer {
-  position: absolute;
-  padding: 15px;
+  position: fixed;
+  padding: 15px 30px;
   border-radius: 7px;
+  color: #fff;
+  z-index: 99999;
 
-  .success {
-    background: #10b981;
-  }
-
-  .error {
-    background: #dc2626;
-  }
-
-  .warning {
-    background: #fde047;
-  }
-
-  .info {
-    background: #7dd3fc;
-  }
-
-  .defaultPosition {
-    top: 0;
-    left: 10px;
-  }
-
-  .topCenterPosition {
-    top: 0;
-    left: 50%;
-    right: 50%;
-  }
-
-  .topRightPosition {
-    top: 0;
-    right: 10px;
-  }
-
-  .center {
+  .closeBtn {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 5px;
+    right: 5px;
   }
+}
 
-  .centerLeftPosition {
-    top: 50%;
-    left: 10px;
-  }
+.success {
+  background: #4ade80;
+}
 
-  .centerRightPosition {
-      top: 50%;
-      right: 10px;
-  }
+.error {
+  background: #dc2626;
+}
 
-  .bottomLeftPosition {
-      bottom: 0;
-      left: 10px;
-  }
+.warning {
+  background: #fde047;
+}
 
-  .bottomCenterPosition {
-      bottom: 0;
-      left: 50%;
-      right: 50%;
-  }
+.info {
+  background: #7dd3fc;
+}
 
-  .bottomRightPosition {
-      bottom: 0;
-      right: 10px;
-  }
+.defaultPosition {
+  top: 10px;
+  left: 10px;
+}
+
+.topCenterPosition {
+  top: 10px;
+  left: 50%;
+  right: 50%;
+}
+
+.topRightPosition {
+  top: 10px;
+  right: 10px;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centerLeftPosition {
+  top: 50%;
+  left: 10px;
+}
+
+.centerRightPosition {
+  top: 50%;
+  right: 10px;
+}
+
+.bottomLeftPosition {
+  bottom: 10px;
+  left: 10px;
+}
+
+.bottomCenterPosition {
+  bottom: 10px;
+  left: 50%;
+  right: 50%;
+}
+
+.bottomRightPosition {
+  bottom: 10px;
+  right: 10px;
 }

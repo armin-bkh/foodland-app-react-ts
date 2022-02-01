@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { useCart, useCartActions } from "../Providers/CartProvider";
 import checkExistFood from "../Utils/checkExistFood";
+import { useToasts } from "../Providers/ToastProvider";
 
 interface foodItemProps {
   food: any;
@@ -10,6 +11,7 @@ interface foodItemProps {
 const FoodItem = ({ food }: foodItemProps) => {
   const { cart } = useCart();
   const { addHandler, incrementHandler } = useCartActions();
+  const { addToast } = useToasts();
 
   const incrementFoodHandler = () => {
     if (!checkExistFood(cart, food.idMeal)) {
@@ -20,6 +22,7 @@ const FoodItem = ({ food }: foodItemProps) => {
         quantity: 1,
       };
       addHandler(newFood);
+      addToast(`${food.strMeal} successfuly added`, { appearance: "success" })
     } else incrementHandler(food.idMeal);
   };
 

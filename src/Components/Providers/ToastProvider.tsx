@@ -1,35 +1,63 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ToastContext } from "../../Context/ToastContext";
 import Toast from "../Common/Toast/Toast";
 
-type verticalDirection = "center" | "top" | "bottom";
-type horizentalDirection = "center" | "left" | "right";
+export type verticalDirection = "center" | "top" | "bottom";
+export type horizentalDirection = "center" | "left" | "right";
 
 interface toastProviderProps {
   children: React.ReactChild;
-  autoDisMiss: boolean;
-  duration: number;
-  direction:
+  autoDisMiss?: boolean;
+  duration?: number;
+  position?:
     | Exclude<`${verticalDirection}-${horizentalDirection}`, "center-center">
     | "center";
 }
 
+export type appearnceType = "success" | "error" | "warning" | "info";
+
 export type toastType = {
   value: string;
-  appearance: "success" | "error" | "warning" | "info";
+  appearance?: appearnceType;
 };
 
 const ToastProvider = ({
   children,
   autoDisMiss,
   duration,
-  direction,
+  position,
 }: toastProviderProps) => {
-  const [toast, setToast] = useState<toastType>({} as toastType);
+  const [toast, setToast] = useState<toastType | null>(null);
+
+  const closeHandler = () => {
+    setToast(null);
+  };
+
+  useEffect(() => {
+    if (autoDisMiss) {
+      const closeTimeout = window.setTimeout(
+        () => {
+          setToast(null);
+        },
+        duration ? duration : 3000
+      );
+
+      return () => {
+        clearTimeout(closeTimeout);
+      };
+    }
+  }, [toast]);
 
   return (
     <ToastContext.Provider value={setToast}>
-      <Toast value={toast?.value} appearance={toast?.appearance} />
+      {toast?.value && (
+        <Toast
+          value={toast?.value}
+          appearance={toast?.appearance}
+          handleClose={closeHandler}
+          position={position}
+        />
+      )}
       {children}
     </ToastContext.Provider>
   );
@@ -37,6 +65,22 @@ const ToastProvider = ({
 
 export default ToastProvider;
 
-export const useToast = () => {
-    const setToast = useContext(ToastContext);
-}
+export const useToasts = () => {
+  const setToast = useContext(ToastContext);
+
+  const addToast = (value: string, type?: { appearance: appearnceType }) => {
+    if (setToast) {
+      if (type?.appearance)
+        setToast({
+          value,
+          appearance: type?.appearance,
+        });
+      else
+        setToast({
+          value,
+        });
+    }
+  };
+
+  return { addToast };
+};
