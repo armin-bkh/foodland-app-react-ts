@@ -5,8 +5,13 @@ import {
 } from "../../Providers/ToastProvider";
 import styles from "./toast.module.scss";
 import { IoMdClose } from "react-icons/io";
+import { IoCheckmarkOutline, IoWarningOutline } from "react-icons/io5";
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import { BiErrorAlt } from "react-icons/bi";
 
 interface toastProps {
+  auto?: boolean;
+  duration?: number;
   value: string;
   appearance?: appearnceType;
   position?:
@@ -18,7 +23,9 @@ interface toastProps {
 const Toast = ({ value, appearance, position, handleClose }: toastProps) => {
   return (
     <div
-      className={`${styles.toastContainer} ${
+      className={`
+      ${styles.autoClosing}
+      ${styles.toastContainer} ${
         !appearance
           ? styles.info
           : appearance === "success"
@@ -48,6 +55,19 @@ const Toast = ({ value, appearance, position, handleClose }: toastProps) => {
           : styles.bottomRightPosition
       }`}
     >
+      <span className={styles.toastIcon}>
+        {!appearance ? (
+          <AiOutlineInfoCircle />
+        ) : appearance === "success" ? (
+          <IoCheckmarkOutline />
+        ) : appearance === "error" ? (
+          <BiErrorAlt />
+        ) : appearance === "warning" ? (
+          <IoWarningOutline />
+        ) : (
+          <AiOutlineInfoCircle />
+        )}
+      </span>
       <p>{value}</p>
       <span onClick={handleClose} className={styles.closeBtn}>
         <IoMdClose />

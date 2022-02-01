@@ -1,9 +1,16 @@
 .toastContainer {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 15px 30px;
   border-radius: 7px;
   color: #fff;
   z-index: 99999;
+
+  .toastIcon{
+      margin-right: 10px;
+  }
 
   .closeBtn {
     position: absolute;
