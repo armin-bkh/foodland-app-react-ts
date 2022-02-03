@@ -35,9 +35,11 @@ const FoodItem = ({ food }: foodItemProps) => {
         <Link
           to={`food-${food.idMeal}`}
           state={{
-            id: food.idMeal,
-            name: food.strMeal,
-            image: food.strMealThumb,
+            food: {
+              id: food.idMeal,
+              name: food.strMeal,
+              image: food.strMealThumb,
+            },
           }}
         >
           <img
@@ -53,9 +55,9 @@ const FoodItem = ({ food }: foodItemProps) => {
         onClick={incrementFoodHandler}
         className="bg-red-400 py-3 text-white flex-center relative group"
       >
-        {!checkExistFood(cart, food.idMeal) ? "Add to cart" : "In cart"}
-        <span className="ml-3 absolute transition-all -right-10 group-hover:right-16 duration-300">
-          <BsFillCartPlusFill />
+        <span className="relative flex-center">
+          {!checkExistFood(cart, food.idMeal) ? "Add to cart" : "In cart"}
+          <BsFillCartPlusFill className="absolute transition-all -right-40 group-hover:-right-6 duration-300" />
         </span>
       </button>
     </figure>
