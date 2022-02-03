@@ -12,7 +12,9 @@ const URL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
 const FoodDetail = () => {
   const { cart } = useCart();
   const { addHandler } = useCartActions();
-  const [foodDetial, setFoodDetail] = useState<cartItemType>(null!);
+  const [foodDetial, setFoodDetail] = useState<cartItemType>(
+    {} as cartItemType
+  );
   const [count, setCount] = useState<number>(1);
   const location: any = useLocation();
   const { id } = useParams();
@@ -22,17 +24,18 @@ const FoodDetail = () => {
   useEffect(() => {
     if (location.state) {
       const { food } = location.state;
-      console.log(food);
       setFoodDetail(food);
     } else {
       axios
         .get(`${URL}${id}`)
         .then(({ data }) => {
+            console.log(data);
+            
           const value = data.meals[0];
           const food = {
             name: value.strMeal,
             id: value.idMeal,
-            image: value.strMealTumb,
+            image: value.strMealThumb,
           };
           setFoodDetail(food);
         })
@@ -52,9 +55,9 @@ const FoodDetail = () => {
 
   return (
     <section className="shadow rounded-lg flex flex-col md:flex-row">
-      <div className="w-full h-auto md:max-w-sm lg:max-w-md rounded-sm overflow-hidden mb-12">
+      <div className="w-full md:max-w-sm lg:max-w-md rounded-sm overflow-hidden mb-12 md:mb-0">
         <img
-          className="w-fix hover:scale-150 hover:skew-x-6 transition-all"
+          className="w-full h-full hover:scale-150 hover:skew-x-6 transition-all"
           src={foodDetial?.image}
           alt={foodDetial?.name}
         />
@@ -69,7 +72,7 @@ const FoodDetail = () => {
                   prevCount > 1 ? prevCount - 1 : prevCount
                 )
               }
-              className="incDecBtn"
+              className={`incDecBtn ${count === 1 && 'opacity-50 cursor-not-allowed'}`}
             >
               <TiMinusOutline />
             </button>
