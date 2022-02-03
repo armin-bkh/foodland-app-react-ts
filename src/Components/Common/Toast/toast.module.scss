@@ -45,7 +45,7 @@
 
 .defaultPosition {
   top: 10px;
-  left: -70%;
+  left: -100%;
   animation: leftAnimation linear;
 }
 
@@ -57,7 +57,7 @@
 
 .topRightPosition {
   top: 10px;
-  right: -70%;
+  right: -100%;
   animation: rightAnimation linear;
 }
 
@@ -70,19 +70,19 @@
 
 .centerLeftPosition {
   top: 50%;
-  left: -70%;
+  left: -100%;
   animation: leftAnimation linear;
 }
 
 .centerRightPosition {
   top: 50%;
-  right: -70%;
+  right: -100%;
   animation: rightAnimation linear;
 }
 
 .bottomLeftPosition {
   bottom: 10px;
-  left: -70%;
+  left: -100%;
   animation: leftAnimation linear;
 }
 
@@ -94,36 +94,42 @@
 
 .bottomRightPosition {
   bottom: 10px;
-  right: -70%;
+  right: -100%;
   animation: rightAnimation linear;
 }
 
 @keyframes rightAnimation {
   0% {
-    right: -70%;
+    right: -100%;
   }
-  20% {
+  10% {
     right: 10px;
   }
-  40% {
+  50% {
+    right: 10px;
+  }
+  80% {
     right: 13px;
   }
   100% {
-    right: -70%;
+    right: -100%;
   }
 }
 
 @keyframes leftAnimation {
   0% {
-    left: -70%;
+    left: -100%;
   }
-  20% {
+  10% {
     left: 10px;
   }
-  40% {
+  50% {
+    right: 10px;
+  }
+  80% {
     left: 13px;
   }
   100% {
-    left: -70%;
+    left: -100%;
   }
 }
