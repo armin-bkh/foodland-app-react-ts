@@ -9,7 +9,7 @@ const Filter = () => {
           type="text"
           placeholder="searching for..."
         />
-        <button className="p-3  rounded-r-sm bg-red-400 text-white">
+        <button className="p-3 rounded-r-sm bg-red-400 text-white">
           <BiSearchAlt />
         </button>
       </div>

@@ -39,7 +39,7 @@ const ToastProvider = ({
         () => {
           setToast(null);
         },
-        duration ? duration : 3000
+        duration ? duration : 10000
       );
 
       return () => {
@@ -56,6 +56,7 @@ const ToastProvider = ({
           appearance={toast?.appearance}
           handleClose={closeHandler}
           position={position}
+          duration={duration}
         />
       )}
       {children}

@@ -20,9 +20,18 @@ interface toastProps {
   handleClose: () => void;
 }
 
-const Toast = ({ value, appearance, position, handleClose }: toastProps) => {
+const Toast = ({
+  value,
+  appearance,
+  position,
+  handleClose,
+  duration,
+}: toastProps) => {
   return (
     <div
+      style={{
+        animationDuration: duration ? `${(duration / 1000) % 60}.1s` : "10s",
+      }}
       className={`
       ${styles.autoClosing}
       ${styles.toastContainer} ${
@@ -52,6 +61,8 @@ const Toast = ({ value, appearance, position, handleClose }: toastProps) => {
           ? styles.bottomLeftPosition
           : position === "bottom-center"
           ? styles.bottomCenterPosition
+          : position === "top-left"
+          ? styles.defaultPosition
           : styles.bottomRightPosition
       }`}
     >

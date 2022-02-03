@@ -22,7 +22,7 @@ const FoodItem = ({ food }: foodItemProps) => {
         quantity: 1,
       };
       addHandler(newFood);
-      addToast(`${food.strMeal} successfuly added`, { appearance: "success" })
+      addToast(`${food.strMeal} successfuly added`, { appearance: "success" });
     } else incrementHandler(food.idMeal);
   };
 
@@ -38,7 +38,7 @@ const FoodItem = ({ food }: foodItemProps) => {
           }}
         >
           <img
-          loading="lazy"
+            loading="lazy"
             className="w-fix group-hover:scale-150 group-hover:skew-x-6 transition-all duration-700"
             src={food?.strMealThumb}
             alt={food?.strMeal}
