@@ -21,7 +21,7 @@ const FoodsList = () => {
   return (
     <>
       {!error && allFoods ? (
-        allFoods.map((food) => <FoodItem key={food.idMeal} food={food}/>)
+        allFoods.map((food) => <FoodItem key={food.idMeal} food={food} />)
       ) : (
         <p>{error}</p>
       )}

@@ -30,7 +30,7 @@ const Toast = ({
   return (
     <div
       style={{
-        animationDuration: duration ? `${(duration / 1000) % 60}.1s` : "10s",
+        animationDuration: duration ? `${(duration / 1000) % 60}s` : "10s",
       }}
       className={`
       ${styles.autoClosing}

@@ -39,7 +39,7 @@ const ToastProvider = ({
         () => {
           setToast(null);
         },
-        duration ? duration : 10000
+        duration ? duration + 2000 : 10000
       );
 
       return () => {

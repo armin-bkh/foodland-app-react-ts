@@ -6,7 +6,7 @@ import routes from "./Routes/Routes";
 
 function App() {
   return (
-    <ToastProvider autoDisMiss position="top-left" duration={4000}>
+    <ToastProvider autoDisMiss position="top-right" duration={4000}>
       <CartProvider>
         <Routes>
           {routes.map((route) => (

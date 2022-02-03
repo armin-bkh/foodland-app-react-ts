@@ -8,8 +8,8 @@
   color: #fff;
   z-index: 99999;
 
-  .toastIcon{
-      margin-right: 10px;
+  .toastIcon {
+    margin-right: 10px;
   }
 
   .closeBtn {
@@ -21,23 +21,31 @@
 
 .success {
   background: #4ade80;
+  box-shadow: 0 0 5px rgba(#4ade80, 0.8);
+  border: 1px solid #fff;
 }
 
 .error {
   background: #dc2626;
+  box-shadow: 0 0 5px rgba(#dc2626, 0.8);
+  border: 1px solid #fff;
 }
 
 .warning {
   background: #fde047;
+  box-shadow: 0 0 5px rgba(#fde047, 0.8);
+  border: 1px solid #fff;
 }
 
 .info {
   background: #7dd3fc;
+  box-shadow: 0 0 5px rgba(#7dd3fc, 0.8);
+  border: 1px solid #fff;
 }
 
 .defaultPosition {
   top: 10px;
-  // left: 10px;
+  left: -70%;
   animation: leftAnimation linear;
 }
 
@@ -49,7 +57,7 @@
 
 .topRightPosition {
   top: 10px;
-  right: 10px;
+  right: -70%;
   animation: rightAnimation linear;
 }
 
@@ -62,19 +70,19 @@
 
 .centerLeftPosition {
   top: 50%;
-  // left: 10px;
+  left: -70%;
   animation: leftAnimation linear;
 }
 
 .centerRightPosition {
   top: 50%;
-  // right: 10px;
+  right: -70%;
   animation: rightAnimation linear;
 }
 
 .bottomLeftPosition {
   bottom: 10px;
-  // left: 10px;
+  left: -70%;
   animation: leftAnimation linear;
 }
 
@@ -86,37 +94,36 @@
 
 .bottomRightPosition {
   bottom: 10px;
-  // right: 10px;
+  right: -70%;
   animation: rightAnimation linear;
 }
 
-
 @keyframes rightAnimation {
-  0%{
-    right: -20%;
+  0% {
+    right: -70%;
   }
-  20%{
+  20% {
     right: 10px;
   }
-  70%{
+  40% {
     right: 13px;
   }
-  100%{
-    right: -20%;
+  100% {
+    right: -70%;
   }
 }
 
 @keyframes leftAnimation {
-  0%{
-    left: -20%;
+  0% {
+    left: -70%;
   }
-  20%{
+  20% {
     left: 10px;
   }
-  70%{
+  40% {
     left: 13px;
   }
-  100%{
-    left: -20%;
+  100% {
+    left: -70%;
   }
 }
