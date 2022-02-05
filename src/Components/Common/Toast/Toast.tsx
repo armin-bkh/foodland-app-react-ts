@@ -10,6 +10,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { BiErrorAlt } from "react-icons/bi";
 
 interface toastProps {
+  count: number;
   auto?: boolean;
   duration?: number;
   value: string;
@@ -21,6 +22,7 @@ interface toastProps {
 }
 
 const Toast = ({
+  count,
   value,
   appearance,
   position,
@@ -30,6 +32,7 @@ const Toast = ({
   return (
     <div
       style={{
+        top: `${count ? count * 70 + "px" : "3px"}`,
         animationDuration: duration ? `${(duration / 1000) % 60}s` : "10s",
       }}
       className={`

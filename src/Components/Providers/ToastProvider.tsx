@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ToastContext } from "../../Context/ToastContext";
 import Toast from "../Common/Toast/Toast";
+import styles from "../Common/Toast/toast.module.scss";
 
 export type verticalDirection = "center" | "top" | "bottom";
 export type horizentalDirection = "center" | "left" | "right";
@@ -27,17 +28,17 @@ const ToastProvider = ({
   duration,
   position,
 }: toastProviderProps) => {
-  const [toast, setToast] = useState<toastType | null>(null);
+  const [toasts, setToasts] = useState<toastType[] | []>([]);
 
   const closeHandler = () => {
-    setToast(null);
+    setToasts([]);
   };
 
   useEffect(() => {
     if (autoDisMiss) {
       const closeTimeout = window.setTimeout(
         () => {
-          setToast(null);
+          setToasts([]);
         },
         duration ? duration + 2000 : 10000
       );
@@ -46,18 +47,24 @@ const ToastProvider = ({
         clearTimeout(closeTimeout);
       };
     }
-  }, [toast]);
+  }, [toasts]);
 
   return (
-    <ToastContext.Provider value={setToast}>
-      {toast?.value && (
-        <Toast
-          value={toast?.value}
-          appearance={toast?.appearance}
-          handleClose={closeHandler}
-          position={position}
-          duration={duration}
-        />
+    <ToastContext.Provider value={{ toasts, setToasts }}>
+      {toasts && (
+        <div className={styles.toastContainer}>
+          {toasts.map((toast, index) => (
+            <Toast
+            count={index}
+              key={index}
+              value={toast?.value}
+              appearance={toast?.appearance}
+              handleClose={closeHandler}
+              position={position}
+              duration={duration}
+            />
+          ))}
+        </div>
       )}
       {children}
     </ToastContext.Provider>
@@ -67,19 +74,25 @@ const ToastProvider = ({
 export default ToastProvider;
 
 export const useToasts = () => {
-  const setToast = useContext(ToastContext);
+  const { toasts, setToasts } = useContext(ToastContext);
 
   const addToast = (value: string, type?: { appearance: appearnceType }) => {
-    if (setToast) {
+    if (setToasts) {
       if (type?.appearance)
-        setToast({
-          value,
-          appearance: type?.appearance,
-        });
+        setToasts([
+          {
+            value,
+            appearance: type?.appearance,
+          },
+          ...toasts,
+        ]);
       else
-        setToast({
-          value,
-        });
+        setToasts([
+          {
+            value,
+          },
+          ...toasts,
+        ]);
     }
   };
 
