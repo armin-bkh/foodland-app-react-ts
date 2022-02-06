@@ -18,6 +18,7 @@ interface toastProviderProps {
 export type appearnceType = "success" | "error" | "warning" | "info";
 
 export type toastType = {
+  id: number;
   value: string;
   appearance?: appearnceType;
 };
@@ -30,42 +31,37 @@ const ToastProvider = ({
 }: toastProviderProps) => {
   const [toasts, setToasts] = useState<toastType[] | []>([]);
 
-  const closeHandler = () => {
-    setToasts([]);
+  const closeHandler = (id: number) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
   };
 
-  useEffect(() => {
-    if (autoDisMiss) {
-      const closeTimeout = window.setTimeout(
-        () => {
-          setToasts([]);
-        },
-        duration ? duration + 2000 : 10000
-      );
-
-      return () => {
-        clearTimeout(closeTimeout);
-      };
-    }
-  }, [toasts]);
+  const unMountToastHandler = (id: number) => {
+    if (!autoDisMiss) return;
+    window.setTimeout(
+      () => {
+        setToasts((prevToasts) =>
+          prevToasts.filter((toasts) => toasts.id !== id)
+        );
+      },
+      duration ? duration : 10000
+    );
+  };
 
   return (
     <ToastContext.Provider value={{ toasts, setToasts }}>
-      {toasts && (
-        <div className={styles.toastContainer}>
-          {toasts.map((toast, index) => (
-            <Toast
-            count={index}
-              key={index}
-              value={toast?.value}
-              appearance={toast?.appearance}
-              handleClose={closeHandler}
-              position={position}
-              duration={duration}
-            />
-          ))}
-        </div>
-      )}
+      {toasts &&
+        toasts.map((toast, index) => (
+          <Toast
+            index={index}
+            key={toast.id}
+            value={toast?.value}
+            appearance={toast?.appearance}
+            handleClose={() => closeHandler(toast.id)}
+            position={position}
+            duration={duration}
+            handleUnMount={() => unMountToastHandler(toast.id)}
+          />
+        ))}
       {children}
     </ToastContext.Provider>
   );
@@ -80,18 +76,20 @@ export const useToasts = () => {
     if (setToasts) {
       if (type?.appearance)
         setToasts([
+          ...toasts,
           {
             value,
             appearance: type?.appearance,
+            id: new Date().getTime(),
           },
-          ...toasts,
         ]);
       else
         setToasts([
+          ...toasts,
           {
             value,
+            id: new Date().getTime(),
           },
-          ...toasts,
         ]);
     }
   };

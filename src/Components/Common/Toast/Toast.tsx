@@ -8,9 +8,10 @@ import { IoMdClose } from "react-icons/io";
 import { IoCheckmarkOutline, IoWarningOutline } from "react-icons/io5";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { BiErrorAlt } from "react-icons/bi";
+import { useEffect } from "react";
 
 interface toastProps {
-  count: number;
+  index: number;
   auto?: boolean;
   duration?: number;
   value: string;
@@ -19,20 +20,27 @@ interface toastProps {
     | Exclude<`${verticalDirection}-${horizentalDirection}`, "center-center">
     | "center";
   handleClose: () => void;
+  handleUnMount: () => void,
 }
 
 const Toast = ({
-  count,
+  index,
   value,
   appearance,
   position,
   handleClose,
+  handleUnMount,
   duration,
 }: toastProps) => {
+
+  useEffect(() => {
+    handleUnMount();
+  }, []);
+
   return (
     <div
       style={{
-        top: `${count ? count * 70 + "px" : "3px"}`,
+        top: `${index ? index * 70 + "px" : "3px"}`,
         animationDuration: duration ? `${(duration / 1000) % 60}s` : "10s",
       }}
       className={`
