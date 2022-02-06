@@ -9,8 +9,10 @@ interface foodsListProps {
 }
 
 const FoodsList = ({ foods, error, loading }: foodsListProps) => {
+
   let returnValue;
-  if (!error && foods) {
+
+  if (!error && foods.length > 0) {
     returnValue = foods.map((food: any) => (
       <FoodItem key={food.idMeal} food={food} />
     ));
