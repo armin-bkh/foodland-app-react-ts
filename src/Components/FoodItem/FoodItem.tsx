@@ -57,7 +57,7 @@ const FoodItem = ({ food }: foodItemProps) => {
       >
         <span className="relative flex-center">
           {!checkExistFood(cart, food.idMeal) ? "Add to cart" : "In cart"}
-          <BsFillCartPlusFill className="absolute transition-all -right-40 group-hover:-right-6 duration-300" />
+          <BsFillCartPlusFill className="absolute transition-all -right-60 group-hover:-right-6 duration-300" />
         </span>
       </button>
     </figure>
