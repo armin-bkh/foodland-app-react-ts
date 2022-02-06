@@ -18,5 +18,7 @@ export type actionType = {
 
 export enum cartCases {
   GETDATA = "GETDATA",
-  ADDFOOD = "ADDFOOD",
+  INCREMENTFOOD = "INCREMENTFOOD",
+  REMOVEFOOD = "REMOVEFOOD",
+  DECREMENTFOOD = "DECREMENTFOOD",
 }

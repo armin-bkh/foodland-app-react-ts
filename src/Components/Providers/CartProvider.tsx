@@ -23,7 +23,7 @@ const reducer = (state: cartType, action: actionType) => {
       const savedCart = JSON.parse(localStorage.getItem("foodLandCart")!) || [];
       return { ...state, cart: savedCart };
     }
-    case cartCases.ADDFOOD: {
+    case cartCases.INCREMENTFOOD: {
       const cloneCart = [...state.cart];
       const isExistFood = cloneCart.find(
         (item) => item.id === action.payload?.id
@@ -41,6 +41,31 @@ const reducer = (state: cartType, action: actionType) => {
         error: null,
         cart: cloneCart,
       };
+    }
+    case cartCases.DECREMENTFOOD: {
+      let cloneCart = [...state.cart];
+      const index = cloneCart.findIndex(
+        (item) => item.id === action.payload?.id
+      );
+      const selectedItem = { ...cloneCart[index] };
+      if (selectedItem.quantity) {
+        if (selectedItem.quantity === 1) {
+          cloneCart = cloneCart.filter(
+            (item) => item.id !== action.payload?.id
+          );
+        } else {
+          selectedItem.quantity--;
+          cloneCart[index] = selectedItem;
+        }
+      }
+      console.log(cloneCart);
+      return { loading: false, error: null, cart: cloneCart };
+    }
+    case cartCases.REMOVEFOOD: {
+      const filteredCart = state.cart.filter(
+        (item) => item.id !== action.payload?.id
+      );
+      return { loading: false, error: null, cart: filteredCart };
     }
     default:
       return state;
@@ -73,10 +98,18 @@ export const useCart = () => useContext(CartContext);
 
 export const useCartActions = () => {
   const dispatch = useContext(CartActionsContext);
-  
-  const addHandler = (food: cartItemType) => {
-    dispatch({ type: cartCases.ADDFOOD, payload: food });
+
+  const incrementHandler = (food: cartItemType) => {
+    dispatch({ type: cartCases.INCREMENTFOOD, payload: food });
   };
 
-  return { addHandler };
+  const removeHandler = (food: cartItemType) => {
+    dispatch({ type: cartCases.REMOVEFOOD, payload: food });
+  };
+
+  const decrementHandler = (food: cartItemType) => {
+    dispatch({ type: cartCases.DECREMENTFOOD, payload: food });
+  };
+
+  return { incrementHandler, removeHandler, decrementHandler };
 };

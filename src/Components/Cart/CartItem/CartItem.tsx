@@ -9,12 +9,23 @@ interface cartItemProps {
 }
 
 const CartItem = ({ food }: cartItemProps) => {
-  const { addHandler } = useCartActions();
+  const { incrementHandler, removeHandler, decrementHandler } =
+    useCartActions();
   const { addToast } = useToasts();
 
-  const incrementHandler = () => {
-    addHandler(food);
-    addToast(`${food.name} successfuly incremented`, { appearance: "info" });
+  const incrementItemHandler = () => {
+    incrementHandler(food);
+    addToast(`${food.name} successfuly incremented`, { appearance: "success" });
+  };
+
+  const removeItemHandler = () => {
+    removeHandler(food);
+    addToast(`${food.name} successfuly removed`, { appearance: "success" });
+  };
+
+  const decrementItemHandler = () => {
+    decrementHandler(food);
+    addToast(`${food.name} successfuly decremented`, { appearance: "success" });
   };
 
   return (
@@ -36,13 +47,25 @@ const CartItem = ({ food }: cartItemProps) => {
         </div>
 
         <div className="flex flex-wrap">
-          <button type="button" className="flex-1 flex-center incDecBtn rounded-b-none rounded-r-none">
+          <button
+            type="button"
+            onClick={decrementItemHandler}
+            className="flex-1 flex-center incDecBtn rounded-b-none rounded-r-none"
+          >
             <TiMinusOutline />
           </button>
-          <button type="button" onClick={incrementHandler} className="flex-1 flex-center incDecBtn rounded-b-none rounded-l-none border-l-0">
+          <button
+            type="button"
+            onClick={incrementItemHandler}
+            className="flex-1 flex-center incDecBtn rounded-b-none rounded-l-none border-l-0"
+          >
             <TiPlusOutline />
           </button>
-          <button type="button" className="w-full flex-center incDecBtn border-t-0 rounded-t-none">
+          <button
+            type="button"
+            onClick={removeItemHandler}
+            className="w-full flex-center incDecBtn border-t-0 rounded-t-none"
+          >
             <HiOutlineTrash />
           </button>
         </div>

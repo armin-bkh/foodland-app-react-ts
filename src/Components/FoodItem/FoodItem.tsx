@@ -10,7 +10,7 @@ interface foodItemProps {
 
 const FoodItem = ({ food }: foodItemProps) => {
   const { cart } = useCart();
-  const { addHandler } = useCartActions();
+  const { incrementHandler } = useCartActions();
   const { addToast } = useToasts();
 
   const incrementFoodHandler = () => {
@@ -20,7 +20,7 @@ const FoodItem = ({ food }: foodItemProps) => {
       image: food.strMealThumb,
       quantity: 1,
     };
-    addHandler(newFood);
+    incrementHandler(newFood);
     if (!checkExistFood(cart, food.idMeal)) {
       addToast(`${food.strMeal} successfuly added`, { appearance: "success" });
     } else

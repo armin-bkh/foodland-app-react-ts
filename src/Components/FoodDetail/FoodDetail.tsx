@@ -11,7 +11,7 @@ const URL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
 
 const FoodDetail = () => {
   const { cart } = useCart();
-  const { addHandler } = useCartActions();
+  const { incrementHandler } = useCartActions();
   const [foodDetial, setFoodDetail] = useState<cartItemType>(
     {} as cartItemType
   );
@@ -44,7 +44,7 @@ const FoodDetail = () => {
   }, []);
 
   const addToCarthandler = () => {
-    addHandler({ ...foodDetial, quantity: count });
+    incrementHandler({ ...foodDetial, quantity: count });
     setCount(1);
     if (!checkExistFood(cart, foodDetial.id)) {
       addToast(`${foodDetial.name} successfuly added`, {
