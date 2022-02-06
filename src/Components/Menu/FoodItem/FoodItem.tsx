@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
-import { useCart, useCartActions } from "../Providers/CartProvider";
-import checkExistFood from "../Utils/checkExistFood";
-import { useToasts } from "../Providers/ToastProvider";
+import { useCart, useCartActions } from "../../Providers/CartProvider";
+import checkExistFood from "../../Utils/checkExistFood";
+import { useToasts } from "../../Providers/ToastProvider";
 
 interface foodItemProps {
   food: any;

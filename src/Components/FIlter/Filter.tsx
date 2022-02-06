@@ -1,8 +1,12 @@
 import { BiSearchAlt } from "react-icons/bi";
 
-const Filter = () => {
+interface filterProps {
+  search: string,
+}
+
+const Filter = ({ search }: filterProps) => {
   return (
-    <section className="flex flex-col sticky md:top-32 z-50">
+    <form onSubmit={(e)=> e.preventDefault()} className="flex flex-col sticky md:top-32 z-50">
       <div className="text top-12 flex rounded-l-sm shadow focus-within:shadow-md">
         <input
           className="px-5 flex-1 w-4/5 outline-none py-2"
@@ -13,7 +17,7 @@ const Filter = () => {
           <BiSearchAlt />
         </button>
       </div>
-    </section>
+    </form>
   );
 };
 
