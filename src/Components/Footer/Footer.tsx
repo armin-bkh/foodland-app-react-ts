@@ -19,15 +19,15 @@ const links = [
 const Footer = () => {
   return (
     <footer className="layoutPadding shadow text-red-400">
-      <div className="flex flex-between flex-col lg:flex-row items-start">
-        <ul className="text-black">
+      <div className="flex flex-between flex-col md:flex-row items-start">
+        <ul className="text-black flex md:flex-col mb-5 md:mb-0 text-sm md:text-base">
           {links.map((link) => (
-            <li key={link.to}>
+            <li className="mr-3 md:mr-0 last:mr-0" key={link.to}>
               <Link
                 className="flex-center justify-start hover:text-red-400 trnasition-all"
                 to={link.to}
               >
-                <span className="mr-3">{link.icon}</span>
+                <span className="mr-2">{link.icon}</span>
                 {link.title}
               </Link>
             </li>
