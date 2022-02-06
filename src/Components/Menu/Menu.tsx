@@ -61,7 +61,7 @@ const Menu = () => {
         />
       </section>
       {search && foods.length === 0 ? (
-        <p className="text-3xl col-span-3 text-red-400">
+        <p className="text-xl lg:text-3xl md:col-span-3 text-red-400">
           sorry we haven't that food...
         </p>
       ) : (
