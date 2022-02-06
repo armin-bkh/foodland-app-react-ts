@@ -47,17 +47,21 @@ const CartItem = ({ food }: cartItemProps) => {
         </div>
 
         <div className="flex flex-wrap">
-          <button
-            type="button"
-            onClick={decrementItemHandler}
-            className="flex-1 flex-center incDecBtn rounded-b-none rounded-r-none"
-          >
-            <TiMinusOutline />
-          </button>
+          {food.quantity && food.quantity > 1 && (
+            <button
+              type="button"
+              onClick={decrementItemHandler}
+              className="flex-1 flex-center incDecBtn rounded-b-none rounded-r-none border-r-0"
+            >
+              <TiMinusOutline />
+            </button>
+          )}
           <button
             type="button"
             onClick={incrementItemHandler}
-            className="flex-1 flex-center incDecBtn rounded-b-none rounded-l-none border-l-0"
+            className={`flex-1 flex-center incDecBtn rounded-b-none ${
+              food.quantity !== 1 && "rounded-l-none"
+            }`}
           >
             <TiPlusOutline />
           </button>

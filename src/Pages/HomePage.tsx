@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import HomeBg from "../Assets/Images/Hamburger-bro.png";
+import useScrollToTop from "../Hooks/scrollToTop";
 const HomePage = () => {
-  const navigate = useNavigate();
+  useScrollToTop();
   return (
     <Layout>
       <main className="main grid grid-cols-3 grid-row-3">
@@ -16,13 +17,9 @@ const HomePage = () => {
             aperiam tempore quibusdam molestiae, eveniet nemo maxime! Beatae
             laborum eius placeat officiis!
           </p>
-          <button
-            type="button"
-            onClick={() => navigate("/foods")}
-            className="homePageButton"
-          >
-            Reserve...
-          </button>
+          <Link to={"/foods"} className="homePageButton">
+            Menu...
+          </Link>
         </section>
         <section className="flex col-start-3 col-end-4 row-start-1 items-start lg:items-end">
           <img className="w-full" src={HomeBg} alt="bakgroung" />
