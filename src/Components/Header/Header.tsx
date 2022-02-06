@@ -7,7 +7,7 @@ import { useCart } from "../Providers/CartProvider";
 const links = [
   { to: "/", title: "Home", icons: <FaHome /> },
   { to: "/foods", title: "Menu", icons: <MdOutlineMenuBook /> },
-  { to: "/checkout", title: null, icons: <IoMdCart /> },
+  { to: "/cart", title: null, icons: <IoMdCart /> },
 ];
 
 const Header = () => {
@@ -32,10 +32,10 @@ const Header = () => {
                   to={link.to}
                 >
                   <span
-                    className={link.to !== "/checkout" ? "mr-3" : "relative"}
+                    className={link.to !== "/cart" ? "mr-3" : "relative"}
                   >
                     {link.icons}
-                    {link.to === "/checkout" && (
+                    {link.to === "/cart" && (
                       <span className="absolute -top-5 -right-3 text bg-red-400 rounded-full flex-center text-white w-5 h-5">
                         {cart.length}
                       </span>
