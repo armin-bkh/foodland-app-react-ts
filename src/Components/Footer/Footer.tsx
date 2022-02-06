@@ -5,9 +5,9 @@ import { MdOutlineMenuBook } from "react-icons/md";
 import { IoMdCart } from "react-icons/io";
 
 const socialMedia = [
-  { icon: <FaInstagram />, href: "" },
-  { icon: <FaLinkedin />, href: "" },
-  { icon: <FaTwitter />, href: "" },
+  { icon: <FaInstagram />, href: "https://www.instagram.com/rminbkh" },
+  { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/arminbkh" },
+  { icon: <FaTwitter />, href: "https://twitter.com/arminbkh" },
 ];
 
 const links = [
@@ -48,6 +48,7 @@ const Footer = () => {
                 <a
                   className={`hover:text-black transition-all`}
                   href={link.href}
+                  target="_blank"
                 >
                   {link.icon}
                 </a>
